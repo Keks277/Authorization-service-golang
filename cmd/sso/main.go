@@ -5,6 +5,7 @@ import (
 	"log/slog"
 	"os"
 
+	"github.com/ilyababichev/authorization-service/internal/app"
 	"github.com/ilyababichev/authorization-service/internal/config"
 )
 
@@ -23,6 +24,9 @@ func main() {
 
 	log.Error("start application", slog.String("env", cfg.Env))
 
+	application := app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.TokenTTL)
+
+	application.GRPCSrv.MustRun()
 	//Инициализировать логгер
 
 	//инициализировать приложение(app)
