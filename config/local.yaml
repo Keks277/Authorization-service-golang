@@ -1,5 +1,5 @@
 env: "local"
-storage_path: "" #путь БД
+storage_path: "./somePath" #путь БД
 token_ttl: 1h
 grpc:
   port: 44044

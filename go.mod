@@ -3,13 +3,13 @@ module github.com/ilyababichev/authorization-service
 go 1.22.4
 
 require (
+	github.com/ilyakaznacheev/cleanenv v1.5.0
 	google.golang.org/grpc v1.64.0
 	google.golang.org/protobuf v1.34.2
 )
 
 require (
 	github.com/BurntSushi/toml v1.4.0 // indirect
-	github.com/ilyakaznacheev/cleanenv v1.5.0 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
 	golang.org/x/net v0.22.0 // indirect
 	golang.org/x/sys v0.18.0 // indirect
