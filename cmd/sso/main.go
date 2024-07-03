@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/ilyababichev/authorization-service/internal/app"
 	"github.com/ilyababichev/authorization-service/internal/config"
@@ -26,12 +28,24 @@ func main() {
 
 	application := app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.TokenTTL)
 
-	application.GRPCSrv.MustRun()
+	go application.GRPCSrv.MustRun()
 	//Инициализировать логгер
 
 	//инициализировать приложение(app)
 
-	//
+	//Создаем канал для сигнала от ОС
+	stop := make(chan os.Signal, 1)
+
+	//Сообщаем какие сигналы мы ждем
+	signal.Notify(stop, syscall.SIGTERM, syscall.SIGINT)
+
+	//Ждем сигнал в канале
+	sign := <-stop
+
+	//Мягко останавливаем сервер
+	application.GRPCSrv.Stop()
+
+	log.Info("Server stopped with " + sign.String())
 }
 
 func setupLogger(env string) *slog.Logger {
