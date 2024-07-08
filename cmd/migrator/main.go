@@ -35,7 +35,7 @@ func main() {
 		panic("migrations-path is required")
 	}
 
-	db, err := sql.Open("postgres", "postgres://postgres:Keksandykrop1995@localhost:5432/GolangSSO?sslmode=disable")
+	db, err := sql.Open("postgres", "postgres://postgres:**************@localhost:5432/GolangSSO?sslmode=disable")
 	if err != nil {
 		fmt.Println(err)
 	}
