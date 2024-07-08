@@ -5,6 +5,7 @@ import (
 	"time"
 
 	grpcapp "github.com/ilyababichev/authorization-service/internal/app/grpc"
+	"github.com/ilyababichev/authorization-service/internal/services/auth"
 )
 
 type App struct {
@@ -20,8 +21,8 @@ func New(
 	//Инициализация хранилища
 
 	//init auth service
-
-	grpcApp := grpcapp.New(log, grpcPort)
+	var authService
+	grpcApp := grpcapp.New(log, authService, grpcPort)
 
 	return &App{
 		GRPCSrv: grpcApp,
