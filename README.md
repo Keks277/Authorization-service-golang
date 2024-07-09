@@ -11,3 +11,5 @@
 # Команда для запуска миграции go run ./cmd/migrator --storage-path=./storage/sso.db --migrations-path=./migrations
 
 # Команда для чтения конфига go run cmd/sso/main.go --config=./config/local.yaml
+
+# Драйвер для postgres github.com/lib/pq
